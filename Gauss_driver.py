@@ -25,7 +25,6 @@ if __name__ == "__main__":
     else:
       print("Booooo!")
 
-    print(sol0)
   if which == 1:
     print("Using Gauss-Seidel Method...")
     if works1 == 1:
@@ -34,30 +33,30 @@ if __name__ == "__main__":
     else:
       print("Booooo!")
 
-  # if ((works0 == 1) and (works1 == 1)):
-  #   print("Plotting both...")
-  #   errors_df0.plot(x=0, y=1, kind="line", marker='o', color="pink", label="Gauss-Jacobi")
-  #   errors_df1.plot(x=0, y=1, kind="line", marker='o', color="lightblue", label="Gauss-Seidel")
-  # if (works0 == 1) ^ (works1 == 1): 
-  #   print("Plotting...")
-  #   if works0 == 1:
-  #     errors_df0.plot(x=0, y=1, kind="line", marker='o', color="pink", label="Gauss-Jacobi")
-  #   if works1 == 1:
-  #     errors_df1.plot(x=0, y=1, kind="line", marker='o', color="lightblue", label="Gauss-Seidel")
-  #   plt.xlabel("Iteration number")
-  #   plt.ylabel("Error")
-  #   plt.title("Error(Iteration Number)")
-  #   plt.savefig("errors_D=" + str(D) + ".jpg")
-    
   if works0 == 1 or works1 == 1:
-      ax = None
-      if works0 == 1:
-          ax = errors_df0.plot(x=0, y=1, kind="line", marker='o', color="pink", label="Gauss-Jacobi")
-      if works1 == 1:
-          ax = errors_df1.plot(x=0, y=1, kind="line", marker='o', color="lightblue", label="Gauss-Seidel", ax=ax)
-      ax.set_xlabel("Iteration number")
-      ax.set_ylabel("Error")
-      ax.set_title("Error vs Iteration Number")
-      plt.savefig("errors_D=" + str(D) + ".jpg")
-      plt.show()
+    ax = None
+    if works0 == 1:
+      ax = errors_df0.plot(x=0, y=1, kind="line", marker='o', color="pink", label="Gauss-Jacobi")
+    if works1 == 1:
+      ax = errors_df1.plot(x=0, y=1, kind="line", marker='o', color="lightblue", label="Gauss-Seidel", ax=ax)
+    ax.set_xlabel("Iteration number")
+    ax.set_ylabel("Error")
+    ax.set_title("Error vs Iteration Number for D = " + str(D))
+    plt.savefig("errors_D=" + str(D) + ".jpg")
+
+    A20 = np.ones((10, 10))
+    D20 = [1,2,3,4,5,6,7,8,9,10]
+    b20 = D20.copy()
+    np.fill_diagonal(A20, D20)
+    #print(A20)
+    sol20, tmp, tmp, tmp = GaussJacobi(A20, b20, "finalpart")
+    A21 = np.ones((10, 10))
+    D21 = [1,2,3,4,5,6,7,8,9,10]
+    b21 = D21.copy()
+    np.fill_diagonal(A21, D21)
+    #print(A21)
+    sol21, tmp, tmp, tmp = GaussSeidel(A21, b21, "finalpart")
+    print(sol20)
+    print(sol21)
+
 
